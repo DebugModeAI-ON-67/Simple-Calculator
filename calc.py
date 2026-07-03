@@ -31,3 +31,5 @@ while not done:
         div(num1, num2)
     elif op == "done":
         done = True
+    else:
+        print("Invalid operation!")
