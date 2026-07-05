@@ -1,20 +1,28 @@
 import os
 
+
 def add(x, y):
     answer = x + y
-    return print("\nSum: " + str(answer))
+    print("\nSum: " + str(answer))
+
 
 def sub(x, y):
     answer = x - y
-    return print("\nDifference: " + str(answer))
+    print("\nDifference: " + str(answer))
+
 
 def mult(x, y):
     answer = x * y
-    return print("\nProduct: " + str(answer))
+    print("\nProduct: " + str(answer))
+
 
 def div(x, y):
-    answer = x / y
-    return print("\nQuotient: " + str(answer))
+    try:
+        answer = x / y
+        print("\nQuotient: " + str(answer))
+    except ZeroDivisionError:
+        print("\nError: Cannot divide by zero!")
+
 
 done = False
 while not done:
@@ -22,11 +30,27 @@ while not done:
     print("Welcome to the simple calculator!")
     print("Operations: add, sub, mult, div")
     print("Type \"done\" if done.")
-    op = input("\nEnter operation: ")
+
+    op = input("\nEnter operation: ").lower().strip()
+
     if op == "done":
         break
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+
+    if op not in ["add", "sub", "mult", "div"]:
+        print("Invalid operation!")
+        os.system('pause')
+        os.system('cls')
+        continue
+
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+    except ValueError:
+        print("\nInvalid input! Please enter numbers only.")
+        os.system('pause')
+        os.system('cls')
+        continue
+
     if op == "add":
         add(num1, num2)
     elif op == "sub":
@@ -35,9 +59,7 @@ while not done:
         mult(num1, num2)
     elif op == "div":
         div(num1, num2)
-    else:
-        print("Invalid operation!")
-    print("================================")
 
+    print("================================")
     os.system('pause')
     os.system('cls')
